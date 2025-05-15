@@ -39,7 +39,7 @@ const Table = () => {
 
     }, [status])
     return (
-        <div className='max-w-[1200px] m-auto '>
+        <div className='max-w-[1200px] m-auto font-mono'>
             <div className='flex justify-between p-5 px-5'>
                 <h1 className='text-[22px] font-bold'>Table Workers</h1>
                 <Link to={"/addUser"}><button className='bg-blue-600 text-white hover:bg-blue-700 rounded-xl px-4 py-2'>Add New</button></Link>

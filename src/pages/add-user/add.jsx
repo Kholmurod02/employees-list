@@ -38,7 +38,7 @@ const AddUser = () => {
 
 
   return (
-    <div className="max-w-[1200px] m-auto">
+    <div className="max-w-[1200px] m-auto font-mono">
       <form onSubmit={handleSubmit} className="w-[90%] sm:w-[50%] md:[90%] m-auto mt-5 border border-gray-100 rounded-lg">
         <div className="px-3 pt-3 flex gap-3">
         <button type="button" onClick={()=>navigate("/")}><ArrowLeft/></button>

@@ -97,3 +97,15 @@ export const filterByStatus = createAsyncThunk("employees/filterByStatus",
     }
 )
 
+export const sortByName = createAsyncThunk("employees/sortByName",
+    async () => {
+        try {
+            const { data } = await axios.get(`${BASIC_URL}?sortBy=name`)
+            return data
+        } catch (error) {
+            console.error(error);
+
+        }
+    }
+)
+

@@ -2,13 +2,16 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { filterByName, filterByRole, filterByStatus, getWorkers, removeWorkers, updateWorker } from '../../api/workersApi'
-import { Eye, Search, SquarePen, Trash } from 'lucide-react'
+import { filterByName, filterByRole, filterByStatus, getWorkers, removeWorkers, sortByName, updateWorker } from '../../api/workersApi'
+import { AArrowDown, Eye, Search, SquarePen, Trash } from 'lucide-react'
 
 const Table = () => {
     const [search, setSearch] = useState("")
     const [roles, setRoles] = useState("")
     const [status, setStatus] = useState("")
+    const [sort,setSort] = useState(false)
+
+
     const { data } = useSelector((store) => store.workersSlice)
     const dispatch = useDispatch()
 
@@ -36,8 +39,16 @@ const Table = () => {
 
     useEffect(() => {
         dispatch(filterByStatus(status))
-
     }, [status])
+
+    useEffect(() => {
+        if(sort){
+            dispatch(sortByName(sort))
+        }else{
+               dispatch(getWorkers())
+        }
+
+    }, [sort])
     return (
         <div className='max-w-[1200px] m-auto font-mono'>
             <div className='flex justify-between p-5 px-5'>
@@ -78,7 +89,7 @@ const Table = () => {
                         <tr className='border-b border-gray-200'>
                             <th className='px-4 py-3 text-gray-600'>
                                 <input type="checkbox" className="h-4 w-4 rounded border-gray-300 text-blue-600" /></th>
-                            <th className='px-4 py-3 text-gray-600 text-start'>Name</th>
+                            <th onClick={()=>{setSort((prev)=>!prev)}} className='px-4 py-3 text-gray-600 text-start flex gap-1 items-center'>Name <span><AArrowDown/></span></th>
                             <th className='px-4 py-3 text-gray-600'>Role</th>
                             <th className='px-4 py-3 text-gray-600'>Phone</th>
                             <th className='px-4 py-3 text-gray-600'>Status</th>

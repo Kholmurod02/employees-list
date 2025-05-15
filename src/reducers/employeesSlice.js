@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { filterByName, filterByRole, filterByStatus, getWorkers, getWorkersById } from "../api/workersApi";
+import { filterByName, filterByRole, filterByStatus, getWorkers, getWorkersById, sortByName } from "../api/workersApi";
 
 
 export const workersSlice = createSlice({
@@ -24,6 +24,9 @@ export const workersSlice = createSlice({
             state.data = action.payload
         })
          builder.addCase(filterByStatus.fulfilled, (state, action) => {
+            state.data = action.payload
+        })
+         builder.addCase(sortByName.fulfilled, (state, action) => {
             state.data = action.payload
         })
     }

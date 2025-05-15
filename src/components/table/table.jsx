@@ -80,7 +80,7 @@ const Table = () => {
                                 <input type="checkbox" className="h-4 w-4 rounded border-gray-300 text-blue-600" /></th>
                             <th className='px-4 py-3 text-gray-600 text-start'>Name</th>
                             <th className='px-4 py-3 text-gray-600'>Role</th>
-                            <th className='px-4 py-3 text-gray-600'>Number Phone</th>
+                            <th className='px-4 py-3 text-gray-600'>Phone</th>
                             <th className='px-4 py-3 text-gray-600'>Status</th>
                             <th className='px-4 py-3 text-gray-600'>Actions</th>
                         </tr>
@@ -90,20 +90,20 @@ const Table = () => {
                             data && data.map((worker) => {
                                 return (
                                     <tr key={worker.id} className='hover:bg-gray-50 rounded border-b-[0.5px] border-gray-200'>
-                                        <td className='p-4'>
+                                        <td className='px-4 py-2'>
                                             <input type="checkbox"
                                                 className="h-4 w-4 rounded border-gray-300 text-blue-600"
                                                 checked={worker.isArchive} onClick={() => checkWorker(worker)} />
                                         </td>
-                                        <td className='py-4 pl-5 text-blue-600 font-[500] text-start'>{worker.name}</td>
-                                        <td className='p-4'>{worker.role}</td>
-                                        <td className='p-4'>{worker.phone}</td>
-                                        <td className="px-4 py-4">
+                                        <td className='px-4 py-2pl-5 text-blue-600 font-[500] text-start'>{worker.name}</td>
+                                        <td className='px-4 py-2'>{worker.role}</td>
+                                        <td className='px-4 py-2'>{worker.phone}</td>
+                                        <td className="px-4 py-2">
                                             <span className={`px-3 py-1 rounded-full text-sm font-medium ${worker.isArchive == true
                                                     ? 'bg-gray-600 text-white'
                                                     : 'bg-green-200 text-green-800'
                                                 }`}>
-                                                {worker.isArchive?'Archived':"Not Archived"}
+                                                {worker.isArchive?'Archived':"Not-Archived"}
                                             </span>
                                         </td>
                                         <td className='p-4 flex gap-3 items-center justify-center'>

@@ -53,7 +53,7 @@ const UpdateUser = () => {
 
   return (
     <div className="max-w-[1200px] m-auto font-mono">
-      <form onSubmit={handleSubmit} className="w-[90%] sm:w-[50%] md:[90%] m-auto mt-5 border border-gray-100 rounded-lg">
+      <form onSubmit={handleSubmit} className="w-[90%] sm:w-[50%] md:[90%] m-auto mt-14 md:mt-4 border border-gray-100 rounded-lg">
        <div className="px-3 pt-5 flex gap-3">
         <button type="button" onClick={()=>navigate("/")}><ArrowLeft/></button>
         <h1 className="font-bold">Back To Table</h1>
@@ -93,7 +93,6 @@ const UpdateUser = () => {
 
           <div className="flex flex-col gap-2 ">
             <label className="font-bold" >Status:</label>
-            {/* <input type="checkbox" checked={status}  /> */}
             <select 
              className="border border-gray-300 w-full h-[40px] rounded-lg"
             value={status} onChange={(e)=>setStatus(e.target.value)}>

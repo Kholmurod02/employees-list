@@ -48,21 +48,21 @@ const AddUser = () => {
 
           <div className="flex flex-col gap-2">
             <label htmlFor="name" className="font-bold ">Name:</label>
-            <input type="text" id="name" placeholder='  Enter your name'
+            <input type="text" id="name"  required placeholder='  Enter your name'
               value={name} onChange={(e) => setName(e.target.value)}
               className="border border-gray-300 w-full h-[40px] rounded-lg" />
           </div>
 
           <div className="flex flex-col gap-2">
             <label htmlFor="phone" className="font-bold ">Phone:</label>
-            <input type="text" id="phone" placeholder='  +7 (883) 508-3269'
+            <input type="text" id="phone" required placeholder='  +7 (883) 508-3269'
               value={phone} onChange={(e) => setPhone(e.target.value)}
               className="border border-gray-300 w-full h-[40px] rounded-lg" />
           </div>
 
           <div className="flex flex-col gap-2">
             <label htmlFor="phone" className="font-bold">Date of birth:</label>
-            <input type="text" id="phone" placeholder='   DD.MM.YY'
+            <input type="text" id="phone" required placeholder='   DD.MM.YY'
               value={dob} onChange={(e) => setDob(e.target.value)}
               className="border border-gray-300 w-full h-[40px] rounded-lg" />
           </div>

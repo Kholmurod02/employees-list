@@ -7,11 +7,11 @@ import { Eye, Search, SquarePen, Trash } from 'lucide-react'
 
 const Table = () => {
     const [search, setSearch] = useState("")
-    const [roles,setRoles] = useState("")
-    const [status,setStatus] = useState("")
+    const [roles, setRoles] = useState("")
+    const [status, setStatus] = useState("")
     const { data } = useSelector((store) => store.workersSlice)
     const dispatch = useDispatch()
-    
+
     const checkWorker = (worker) => {
         const newWorker = {
             ...worker,
@@ -24,25 +24,25 @@ const Table = () => {
         dispatch(getWorkers())
     }, [dispatch])
 
-       useEffect(() => {
+    useEffect(() => {
         dispatch(filterByName(search))
-        
+
     }, [search])
 
     useEffect(() => {
         dispatch(filterByRole(roles))
-        
+
     }, [roles])
 
     useEffect(() => {
         dispatch(filterByStatus(status))
-        
+
     }, [status])
     return (
         <div className='max-w-[1200px] m-auto '>
             <div className='flex justify-between p-5 px-5'>
                 <h1 className='text-[22px] font-bold'>Table Workers</h1>
-                <Link to={"/addUser"}><button className='border-gray-500 text-[14px] border p-1 w-[100px] rounded text-black hover:bg-gray-100'>Add New</button></Link>
+                <Link to={"/addUser"}><button className='bg-blue-600 text-white hover:bg-blue-700 rounded-xl px-4 py-2'>Add New</button></Link>
             </div>
 
             {/* filters */}
@@ -50,62 +50,74 @@ const Table = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-3 items-center mx-3 gap-10 '>
 
-                    <select 
-                    value={roles} onChange={(e)=>setRoles(e.target.value)}
-                    className='border border-gray-300 rounded w-[90%] h-[40px]'>
-                        <option value="">All Jobs</option>
-                        <option value="cook">Cook</option>
-                        <option value="waiter">Waiter</option>
-                        <option value="driver">Driver</option>
-                    </select>
-                
-                    <select 
-                    value={status} onChange={(e)=>setStatus(e.target.value)}
-                    className='border border-gray-300 rounded w-[90%] h-[40px]'>
-                        <option value="">All Statuses</option>
-                        <option value="true">Archived</option>
-                        <option value="false">Not Archived</option>
-                    </select>
+                <select
+                    value={roles} onChange={(e) => setRoles(e.target.value)}
+                    className='border border-gray-300 rounded-lg w-[90%] h-[40px]'>
+                    <option value="">All Jobs</option>
+                    <option value="cook">Cook</option>
+                    <option value="waiter">Waiter</option>
+                    <option value="driver">Driver</option>
+                </select>
+
+                <select
+                    value={status} onChange={(e) => setStatus(e.target.value)}
+                    className='border border-gray-300 rounded-lg w-[90%] h-[40px]'>
+                    <option value="">All Statuses</option>
+                    <option value="true">Archived</option>
+                    <option value="false">Not Archived</option>
+                </select>
 
                 <div className=' p-1  flex items-center  gap-3 w-[90%]'>
-                    <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" className=' border border-gray-300 rounded w-[100%] focus:none h-[40px]  ' placeholder='  Search by name' />
+                    <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" className=' border border-gray-300 rounded-lg w-[100%] focus:none h-[40px]  ' placeholder='  Search by name' />
                 </div>
             </div>
 
-           <div className='w-full overflow-x-auto'>
-             <table className=' border-collapse rounded text-center my-10 w-[85%] m-auto  '>
-                <thead className='bg-gray-200 '>
-                    <tr>
-                        <th className='p-1 text-gray-600'></th>
-                        <th className='p-1 text-gray-600'>Name</th>
-                        <th className='p-1 text-gray-600'>Role</th>
-                        <th className='p-1 text-gray-600'>Number Phone</th>
-                        <th className='p-1 text-gray-600'>Status</th>
-                        <th className='p-1 text-gray-600'>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                       data &&data.map((worker) => {
-                            return (
-                                <tr key={worker.id} className='hover:bg-gray-50 rounded border-b-[0.5px] border-gray-200'>
-                                    <td className='p-4'><input type="checkbox" checked={worker.isArchive} onClick={() => checkWorker(worker)} /></td>
-                                    <td className='p-4'>{worker.name}</td>
-                                    <td className='p-4'>{worker.role}</td>
-                                    <td className='p-4'>{worker.phone}</td>
-                                    <td className='p-4'><span style={{backgroundColor:worker.isArchive?"green":"#748898",color:"white",padding:"5px 10px",borderRadius:"4px"}}>{worker.isArchive ? "Archived" : "Not Archived"}</span></td>
-                                    <td className='p-4 flex gap-3 items-center'>
-                                        <button onClick={() => dispatch(removeWorkers(worker.id))} className='cursor-pointer'><Trash size={20} /></button>
-                                        <Link to={`/updateUser/${worker.id}`}><SquarePen size={20} /></Link>
-                                        <Link to={`/getUserById/${worker.id}`}><Eye /></Link>
-                                    </td>
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>
-            </table>
-           </div>
+            <div className='min-w-full overflow-x-auto lg:w-auto'>
+                <table className=' border-collapse text-center my-10 md:w-[95%] min-w-full bg-gray-50 rounded-lg m-auto  text-gray-900 '>
+                    <thead>
+                        <tr className='border-b border-gray-200'>
+                            <th className='px-4 py-3 text-gray-600'>
+                                <input type="checkbox" className="h-4 w-4 rounded border-gray-300 text-blue-600" /></th>
+                            <th className='px-4 py-3 text-gray-600 text-start'>Name</th>
+                            <th className='px-4 py-3 text-gray-600'>Role</th>
+                            <th className='px-4 py-3 text-gray-600'>Number Phone</th>
+                            <th className='px-4 py-3 text-gray-600'>Status</th>
+                            <th className='px-4 py-3 text-gray-600'>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            data && data.map((worker) => {
+                                return (
+                                    <tr key={worker.id} className='hover:bg-gray-50 rounded border-b-[0.5px] border-gray-200'>
+                                        <td className='p-4'>
+                                            <input type="checkbox"
+                                                className="h-4 w-4 rounded border-gray-300 text-blue-600"
+                                                checked={worker.isArchive} onClick={() => checkWorker(worker)} />
+                                        </td>
+                                        <td className='py-4 pl-5 text-blue-600 font-[500] text-start'>{worker.name}</td>
+                                        <td className='p-4'>{worker.role}</td>
+                                        <td className='p-4'>{worker.phone}</td>
+                                        <td className="px-4 py-4">
+                                            <span className={`px-3 py-1 rounded-full text-sm font-medium ${worker.isArchive == true
+                                                    ? 'bg-gray-600 text-white'
+                                                    : 'bg-green-200 text-green-800'
+                                                }`}>
+                                                {worker.isArchive?'Archived':"Not Archived"}
+                                            </span>
+                                        </td>
+                                        <td className='p-4 flex gap-3 items-center justify-center'>
+                                            <button onClick={() => dispatch(removeWorkers(worker.id))} className='cursor-pointer'><Trash size={20} /></button>
+                                            <Link to={`/updateUser/${worker.id}`}><SquarePen size={20} /></Link>
+                                            <Link to={`/getUserById/${worker.id}`}><Eye /></Link>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

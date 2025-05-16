@@ -1,9 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASIC_URL } from "../config/config";
+import toast from "react-hot-toast";
 
 
-export const getWorkers = createAsyncThunk("employees/getEmployees",
+export const getWorkers = createAsyncThunk("employees/getWorkers",
     async () => {
         try {
             const { data } = await axios.get(BASIC_URL)
@@ -19,19 +20,23 @@ export const addWorker = createAsyncThunk("employees/addWorker",
     async (newWorker,{dispatch}) => { 
         try {
             await axios.post(BASIC_URL,newWorker)
+            toast.success("Successfully Added")
             dispatch(getWorkers())
         } catch (error) {
+            toast.error("Something goes wrong !")
             console.error(error); 
         }
     }
 )
 
-export const updateWorker = createAsyncThunk("employees/addWorker",
+export const updateWorker = createAsyncThunk("employees/updateWorker",
     async (editedWorker,{dispatch}) => { 
         try {
             await axios.put(`${BASIC_URL}/${editedWorker.id}`,editedWorker)
+            toast.success("Successfully Updated ")
             dispatch(getWorkers())
         } catch (error) {
+             toast.error("Something goes wrong !")
             console.error(error); 
         }
     }
@@ -41,8 +46,10 @@ export const removeWorkers = createAsyncThunk("employees/removeWorkers",
     async (id,{dispatch})=>{
         try {            
         await axios.delete(`${BASIC_URL}/${id}`)
+        toast.success("Successfully removed")
             dispatch(getWorkers())
         } catch (error) {
+             toast.error("Something goes wrong !") 
             console.error(error);
             
         }

@@ -1,12 +1,68 @@
 # React + Vite
+# 🧑‍💼 Employee Management
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Одностраничное приложение (SPA) для просмотра, фильтрации, редактирования и управления данными сотрудников компании.
 
-Currently, two official plugins are available:
+## 🚀 Функциональность
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Просмотр списка сотрудников с отображением:
 
-## Expanding the ESLint configuration
+  * Имени
+  * Должности
+  * Телефона
+  * Фильтрация по:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+  * Должности (`Повар`, `Официант`, `Водитель`)
+  * Статусу (в архиве / активен)
+  * Сортировка списка по:
+
+  * Имени
+
+  * Редактирование данных сотрудника:
+
+  * Имя
+  * Телефон
+  * Дата рождения
+  * Должность (select)
+  * Статус
+* Добавление нового сотрудника
+* Удаление сотрудника
+* Поддержка роутинга (`react-router-dom`)
+* Работа с API:
+
+  * `GET`, `GET BY ID`, `POST`, `PUT`, `DELETE`
+  * Адаптивная вёрстка
+
+## 💡 Технологии
+
+* **React**
+* **Redux Toolkit + createAsyncThunk**
+* **TailwindCSS**
+* **React Router DOM**
+* **MockAPI.io** для фейк-бэкенда
+
+## 📁 Структура проекта
+
+```
+src/
+│
+├── components/       // Table
+├── features/         // Redux slices + async actions
+├── pages/            // Страницы (список, редактирование, добавление)
+├── apis/             // API-запросы
+├── store/
+├── App.jsx
+└── main.jsx/         
+```
+
+## 📦 Установка и запуск
+
+```bash
+git clone https://github.com/Kholmurod02/employees-list.git
+npm install
+npm run dev
+```
+
+## 🔗 API
+
+Для демонстрации используется [mockapi.io](https://67374317aafa2ef222333507.mockapi.io/data). Все операции (чтение, добавление, обновление, удаление) производятся через HTTP-запросы. 

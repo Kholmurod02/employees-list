@@ -48,7 +48,7 @@ src/
 │
 ├── components/       // Table
 ├── features/         // Redux slices + async actions
-├── pages/            // Страницы (список, редактирование, добавление)
+├── pages/            // Страницы (получение по ID, редактирование, добавление)
 ├── apis/             // API-запросы
 ├── store/
 ├── App.jsx
